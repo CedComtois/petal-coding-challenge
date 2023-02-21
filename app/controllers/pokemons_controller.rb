@@ -1,4 +1,5 @@
 class PokemonsController < ApplicationController
+  # No services have been used due to the small size of the queries, but in a bigger environment I would use services and/or query managers when you start using includes, joins, etc.
   def index
     render json: Pokemon.all
   end
@@ -16,10 +17,6 @@ class PokemonsController < ApplicationController
   def create
     permitted = params.permit(:name, :number, :type1, :type2, :total, :hp, :attack, :defense, :special_attack, :special_defense, :speed, :generation, :legendary, :types)
 
-    if permitted[:legendary]
-      permitted[:legendary] = ActiveModel::Type::Boolean.new.cast(permitted[:legendary])
-    end
-
     pokemon = Pokemon.new(permitted)
 
     unless pokemon.save
@@ -35,10 +32,6 @@ class PokemonsController < ApplicationController
     end
 
     permitted = params.permit(:name, :number, :type1, :type2, :total, :hp, :attack, :defense, :special_attack, :special_defense, :speed, :generation, :legendary, :types)
-
-    if permitted[:legendary]
-      permitted[:legendary] = ActiveModel::Type::Boolean.new.cast(permitted[:legendary])
-    end
 
     unless pokemon.update(permitted)
       render json: { errors: pokemon.errors.map { |error| error.full_message } }, status: 412
