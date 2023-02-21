@@ -1,5 +1,4 @@
 require "test_helper"
-require "minitest/spec"
 
 class PokemonTest < ActiveSupport::TestCase
   describe "Validations" do

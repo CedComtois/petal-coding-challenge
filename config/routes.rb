@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/pokemons", to: "pokemons#index"
-  get "/pokemons/:id", to: "pokemons#show"
-  post "/pokemons", to: "pokemons#create"
-  patch "/pokemons/:id", to: "pokemons#patch"
-  delete "/pokemons/:id", to: "pokemons#delete"
+  get "/pokemon/:id", to: "pokemons#show"
+  post "/pokemon", to: "pokemons#create"
+  patch "/pokemon/:id", to: "pokemons#patch"
+  delete "/pokemon/:id", to: "pokemons#delete"
 end
